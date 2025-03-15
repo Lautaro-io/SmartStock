@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bg_home">#0077B6</color>
+    <color name="btn_add_user">#03045e</color>
+    <color name="text_color"> #caf0f8  </color>
+    <color name="bg_app" > #CAF0F8</color>
 </resources>

@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">SmartStock</string>
+    <string name="app_name">SMARTSTOCK</string>
+    <string name="title_home">BIENVENIDO!</string>
+    <string name="add_user">Crear Usuario</string>
+    <string name="hint_text">Introduce tu nombre.</string>
+
 </resources>
