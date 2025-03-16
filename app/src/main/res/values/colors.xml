@@ -6,4 +6,5 @@
     <color name="btn_add_user">#03045e</color>
     <color name="text_color"> #caf0f8  </color>
     <color name="bg_app" > #CAF0F8</color>
+    <color name="bg_card" > #023E8A</color>
 </resources>
