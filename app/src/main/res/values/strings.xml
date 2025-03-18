@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">SMARTSTOCK</string>
     <string name="title_home">BIENVENIDO!</string>
-    <string name="add_user">Crear Usuario</string>
+    <string name="next">Siguiente</string>
     <string name="hint_text">Introduce tu nombre.</string>
+    <string name="hint_branch_text">Introduce el nombre de la sucursal.</string>
+    <string name="create_profile">Crear perfil</string>
 
 </resources>

@@ -1,10 +1,9 @@
-package com.example.smartstock
+package com.example.smartstock.ui
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.smartstock.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -20,10 +19,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
-        binding.btnCreate.setOnClickListener { addUser() }
+        binding.nextBtn.setOnClickListener {
+            val user_name:String = binding.entryName.text.toString()
+            navigateToBranch(user_name) }
     }
 
-    private fun addUser() {
-        TODO("Not yet implemented")
+    private fun navigateToBranch (user_name:String){
+        val intent = Intent(this@MainActivity , BranchActivity::class.java)
+        intent.putExtra("USER_NAME" ,user_name)
+        startActivity(intent)
     }
 }
