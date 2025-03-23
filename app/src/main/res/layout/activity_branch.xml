@@ -78,7 +78,7 @@
                     android:padding="15dp" />
 
                 <Button
-                    android:id="@+id/create_btn"
+                    android:id="@+id/add_profile"
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
                     android:backgroundTint="@color/btn_add_user"

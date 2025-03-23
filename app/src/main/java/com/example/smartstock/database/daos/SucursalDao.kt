@@ -14,6 +14,7 @@ interface SucursalDao {
     suspend fun insert_branch(sucursal: Sucursal)
 
     @Delete
-    suspend fun delete_branch()
+    suspend fun deleteBranch(sucursal: Sucursal)
+
 
 }
