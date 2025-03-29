@@ -1,15 +1,18 @@
-package com.example.smartstock.ui
+package com.example.smartstock.ui.branch
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.example.smartstock.database.entities.Sucursal
 import com.example.smartstock.databinding.ActivityBranchBinding
+import com.example.smartstock.ui.home.HomeActivity
 import com.example.smartstock.viewmodel.SucursalViewModel
 import dagger.hilt.android.AndroidEntryPoint
-
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class BranchActivity : AppCompatActivity() {
@@ -29,15 +32,25 @@ class BranchActivity : AppCompatActivity() {
 
     private fun initUI() {
         val user_name: String = intent.getStringExtra("USER_NAME").toString()
-        binding.tvGreeting.text = "Hola ${user_name}!"
+        binding.tvGreeting.text = "Hola ${sucursalViewModel.getBranchName()}!"
         binding.addProfile.setOnClickListener {
             val suc_name = binding.sucName.text.toString().trim()
             if (suc_name.isNotEmpty()) {
-                sucursalViewModel.insertBranch(Sucursal(0, suc_name, user_name))
-                Log.i("CHELO", "Usuario ${user_name} Sucursal ${suc_name}")
+                val sucursal = Sucursal(1, suc_name, user_name)
+                lifecycleScope.launch {
+                    sucursalViewModel.insertBranch(sucursal)
+                    navigateToHome(sucursal)
+                }
             }
         }
     }
+
+    private fun navigateToHome(sucursal: Sucursal){
+        val intent = Intent(this, HomeActivity::class.java)
+        Log.i("Chelo", "${sucursal.name}, ${sucursal.id}")
+        intent.putExtra("SUC_NAME", sucursal.name)
+        intent.putExtra("SUC_ID",sucursal.id )
+        startActivity(intent)
+
+    }
 }
-
-

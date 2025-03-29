@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="16dp">
+
+    <LinearLayout
+        android:padding="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/dialog_background"
+         android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/leaguespartanbold"
+            android:gravity="center"
+            android:text="@string/add_product"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/nameProduct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/edittextrounded"
+            android:hint="@string/hint_name_p"
+
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/countProduct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/edittextrounded"
+            android:hint="@string/hint_count"
+            android:inputType="number"
+            android:padding="15dp" />
+
+        <EditText
+            android:id="@+id/barCode"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/edittextrounded"
+            android:hint="@string/hint_barcode"
+            android:inputType="number"
+            android:padding="15dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/expireDateDay"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/edittextrounded"
+                android:hint="@string/hint_date_day"
+                android:inputType="number"
+                android:padding="15dp" />
+
+            <EditText
+                android:id="@+id/expireDateMes"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="25dp"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/edittextrounded"
+                android:hint="@string/hint_date_month"
+                android:inputType="number"
+                android:padding="15dp" />
+
+            <EditText
+                android:id="@+id/expireDateYear"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="10dp"
+                android:background="@drawable/edittextrounded"
+                android:hint="@string/hint_date_year"
+                android:inputType="number"
+                android:padding="15dp" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnAddProduct"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="15dp"
+                android:backgroundTint="@color/black"
+                android:padding="10dp"
+                android:text="@string/add_product"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnScanProduct"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+
+                android:backgroundTint="@color/black"
+                android:padding="10dp"
+                android:text="@string/btn_scan"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>

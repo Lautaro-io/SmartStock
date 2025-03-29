@@ -11,10 +11,10 @@ import com.example.smartstock.database.entities.Sucursal
 
 
 @Database(
-    entities = [Sucursal::class , ProductForBranch::class],
+    entities = [Sucursal::class, ProductForBranch::class],
     version = 1
 )
-abstract class AppDataBase: RoomDatabase() {
+abstract class AppDataBase : RoomDatabase() {
     abstract fun sucursalDao(): SucursalDao
 
     abstract fun productForBranchDao(): ProductForBranchDao
@@ -29,7 +29,8 @@ abstract class AppDataBase: RoomDatabase() {
                     context.applicationContext,
                     AppDataBase::class.java,
                     "supermarket_db"
-                ).build()
+                ).fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }

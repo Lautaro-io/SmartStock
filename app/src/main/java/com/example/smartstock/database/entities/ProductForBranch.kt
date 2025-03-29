@@ -22,5 +22,6 @@ data class ProductForBranch(
     val name_product:String,
     val stock: Int,
     val expire_date :String,
-    val suc_id :Int
+    val suc_id :Int,
+    val urlImage : String? = null
 )

@@ -5,5 +5,14 @@
     <string name="hint_text">Introduce tu nombre.</string>
     <string name="hint_branch_text">Introduce el nombre de la sucursal.</string>
     <string name="create_profile">Crear perfil</string>
-
+    <string name="add_product">Ingresar producto.</string>
+    <string name="hint_name_p">Ingresa el nombre del producto.</string>
+    <string name="hint_barcode">Ingresa el codigo de barra.</string>
+    <string name="hint_count">Cantidad.</string>
+    <string name="hint_date_day">DD.</string>
+    <string name="hint_date_month">MM.</string>
+    <string name="hint_date_year">YY.</string>
+    <string name="btn_add_product">Agregar producto.</string>
+    <string name="btn_scan">Buscar codigo.</string>
+    <string name="delete_btn">Eliminar</string>
 </resources>

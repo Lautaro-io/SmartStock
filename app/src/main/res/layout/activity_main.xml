@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/bg_home"
     android:orientation="vertical"
-    tools:context=".ui.MainActivity">
+    tools:context=".ui.main.MainActivity">
 
     <TextView
         android:layout_width="match_parent"
@@ -73,6 +73,7 @@
                 android:fontFamily="@font/balsamiqsansregular"
                 android:background="@drawable/edittextrounded"
                 android:hint="@string/hint_text"
+                android:inputType="textCapWords"
                 android:textSize="12sp"
                 android:padding="15dp" />
 

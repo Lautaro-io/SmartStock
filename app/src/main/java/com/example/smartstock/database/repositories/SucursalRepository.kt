@@ -9,4 +9,12 @@ class SucursalRepository( val sucursalDao: SucursalDao) {
 
     suspend fun deleteBranch(sucursal: Sucursal) = sucursalDao.deleteBranch(sucursal)
 
+    suspend fun sucursalCount() = sucursalDao.getSucursalCount()
+
+    suspend fun getBranchName() = sucursalDao.getBranchName()
+
+    suspend fun countSucursales() : Int { return sucursalDao.countSucursales()}
+
+    suspend fun getFirstSucursal(): Sucursal? = sucursalDao.getFirstSucursal()
+
 }

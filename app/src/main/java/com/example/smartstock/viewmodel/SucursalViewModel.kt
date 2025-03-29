@@ -19,7 +19,23 @@ class SucursalViewModel @Inject constructor(
             repository.insertBranch(sucursal)
         }
     }
-    fun deleteBranch(sucursal: Sucursal){
+
+    fun deleteBranch(sucursal: Sucursal) {
         viewModelScope.launch { repository.deleteBranch(sucursal) }
+    }
+
+    fun getBranchName() {
+        viewModelScope.launch { repository.getBranchName() }
+    }
+
+    //    fun getFirstSucursal(): LiveData<Sucursal>{
+//        return repository.getFirstSucursal()
+//    }
+    suspend fun isSucursalRegistered(): Boolean {
+        return repository.countSucursales() > 0
+    }
+
+    suspend fun getFirstSucursal():Sucursal?{
+        return repository.getFirstSucursal()
     }
 }

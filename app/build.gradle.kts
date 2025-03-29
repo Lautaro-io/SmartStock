@@ -65,4 +65,7 @@ dependencies {
     kapt("com.google.dagger:hilt-compiler:2.51")
 
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+
+    //Picasso
+    implementation ("com.squareup.picasso:picasso:2.8")
 }
