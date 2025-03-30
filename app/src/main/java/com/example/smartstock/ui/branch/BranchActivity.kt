@@ -31,8 +31,8 @@ class BranchActivity : AppCompatActivity() {
 
 
     private fun initUI() {
-        val user_name: String = intent.getStringExtra("USER_NAME").toString()
-        binding.tvGreeting.text = "Hola ${sucursalViewModel.getBranchName()}!"
+        val user_name: String = intent.getStringExtra("USER_NAME")!!
+        binding.tvGreeting.text = "Hola $user_name!"
         binding.addProfile.setOnClickListener {
             val suc_name = binding.sucName.text.toString().trim()
             if (suc_name.isNotEmpty()) {
@@ -47,7 +47,6 @@ class BranchActivity : AppCompatActivity() {
 
     private fun navigateToHome(sucursal: Sucursal){
         val intent = Intent(this, HomeActivity::class.java)
-        Log.i("Chelo", "${sucursal.name}, ${sucursal.id}")
         intent.putExtra("SUC_NAME", sucursal.name)
         intent.putExtra("SUC_ID",sucursal.id )
         startActivity(intent)

@@ -60,7 +60,6 @@
         android:src="@drawable/svg_add_ic"
         android:layout_gravity="end|bottom"
         android:layout_margin="50dp"
-
         tools:ignore="ContentDescription" />
 
 

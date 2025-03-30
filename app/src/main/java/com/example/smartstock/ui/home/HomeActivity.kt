@@ -52,7 +52,7 @@ class HomeActivity : AppCompatActivity() {
     private fun initUI() {
         val sucName = intent.getStringExtra("SUC_NAME").toString()
 
-        binding.tvSucName.text = "Sucursal : ${sucName}"
+        binding.tvSucName.setText("Sucursal : ${sucName}")
         binding.fobAddProduct.setOnClickListener { showDialogAddProduct() }
         rvProducts = binding.productsRv
         rvProducts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -105,7 +105,6 @@ class HomeActivity : AppCompatActivity() {
                 "${expireDateDay.text.toString()}/${expireDateMonth.text.toString()}/${expireDateYear.text.toString()}"
             if (productName.isNotEmpty() && productCode.isNotEmpty() && productCount > 0) {
                 if (sucId > 0) {
-                    Log.i("CHELO", "SucID es mayor a 0")
                     val product =
                         ProductForBranch(
                             0,
@@ -118,7 +117,6 @@ class HomeActivity : AppCompatActivity() {
                     lifecycleScope.launch {
 
                         productViewModel.insertProduct(product)
-                        Log.i("CHELO", "${product.toString()} agregado con exito.")
                         dialog.dismiss()
                     }
                 } else {
@@ -161,6 +159,7 @@ class HomeActivity : AppCompatActivity() {
                 response.body()
             } else {
                 null
+                //Toast.makeText(this,"No se encontro ningun producto con ese codigo.", Toast.LENGTH_SHORT).show()
             }
         }
 

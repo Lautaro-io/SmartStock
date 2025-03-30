@@ -29,8 +29,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun initUI() {
         binding.nextBtn.setOnClickListener {
-            val user_name: String = binding.entryName.text.toString()
-            navigateToBranch(user_name)
+            val userName: String = binding.entryName.text.toString()
+            navigateToBranch(userName)
         }
     }
 
