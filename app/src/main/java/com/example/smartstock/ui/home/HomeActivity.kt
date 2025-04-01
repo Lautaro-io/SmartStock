@@ -14,11 +14,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartstock.R
 import com.example.smartstock.database.entities.ProductForBranch
+import com.example.smartstock.database.entities.Sucursal
 import com.example.smartstock.database.remote.ApiService
 import com.example.smartstock.database.remote.ProductDataResponse
 import com.example.smartstock.databinding.ActivityHomeBinding
 import com.example.smartstock.ui.adapters.ProductAdapter
 import com.example.smartstock.viewmodel.BranchProductViewModel
+import com.example.smartstock.viewmodel.SucursalViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -32,11 +34,13 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityHomeBinding
     private lateinit var retrofit: Retrofit
     private val productViewModel: BranchProductViewModel by viewModels()
+    private val branchViewModel: SucursalViewModel by viewModels()
     private lateinit var rvProducts: RecyclerView
     private lateinit var productAdapter: ProductAdapter
 
     private var sucId: Int = 0
 
+    private var userName: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,12 +49,14 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
         retrofit = getRetrofitProduct()
         sucId = intent?.getIntExtra("SUC_ID", 0)!!
+        Log.i("CHELO", "$userName nombre de usuariooooooooooooo" )
         initUI()
 
     }
 
     private fun initUI() {
         val sucName = intent.getStringExtra("SUC_NAME").toString()
+
 
         binding.tvSucName.setText("Sucursal : ${sucName}")
         binding.fobAddProduct.setOnClickListener { showDialogAddProduct() }
@@ -63,6 +69,9 @@ class HomeActivity : AppCompatActivity() {
         rvProducts.adapter = productAdapter
         productViewModel.allProducts.observe(this) { productos ->
             productAdapter.updateProducts(productos)
+        }
+        binding.btnNewBranch.setOnClickListener {
+            showDialogAddNewBranch()
         }
     }
 
@@ -163,6 +172,41 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
+
+    }
+
+    private fun showDialogAddNewBranch() {
+        val dialog = Dialog(this)
+        userName = intent.getStringExtra("USER_NAME").toString()
+        dialog.setContentView(R.layout.dialog_new_branch)
+        dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
+        val etUserName: EditText = dialog.findViewById(R.id.etUserName)
+        etUserName.setText(userName)
+        val etSucName: EditText = dialog.findViewById(R.id.etNewSucName)
+        val btnAddSuc: Button = dialog.findViewById(R.id.addNewSucBtn)
+
+        btnAddSuc.setOnClickListener {
+            val nameUser = userName
+            val sucName = etSucName.text.toString().trim()
+
+            if (nameUser.isNotEmpty() && sucName.isNotEmpty()) {
+                lifecycleScope.launch {
+                    val newSuc = Sucursal(0, sucName, userName)
+                    branchViewModel.insertBranch(newSuc)
+                    Log.i("CHELO", "${newSuc.toString()} agregado con exito! ")
+                    dialog.dismiss()
+                }
+                Toast.makeText(
+                    this@HomeActivity,
+                    "Sucursal $sucName agregada con exito!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else{
+                Toast.makeText(this@HomeActivity, "Complete todos los campos", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        dialog.show()
 
     }
 

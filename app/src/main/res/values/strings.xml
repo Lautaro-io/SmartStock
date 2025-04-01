@@ -15,4 +15,7 @@
     <string name="btn_add_product">Agregar producto.</string>
     <string name="btn_scan">Buscar codigo.</string>
     <string name="delete_btn">Eliminar</string>
+    <string name="add_new_sucursal">Agregar una nueva sucursal.</string>
+    <string name="hint_user_name">Nombre de usuario.</string>
+    <string name="hint_sucursal_name">Nombre de la sucursal.</string>
 </resources>

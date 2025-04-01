@@ -14,7 +14,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="290dp"
             android:layout_marginTop="-14dp"
             android:backgroundTint="@color/bg_home"
             app:cardCornerRadius="16dp">
@@ -38,12 +38,27 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="30dp"
-                    android:layout_marginTop="-14dp"
+                    android:layout_marginTop="-30dp"
                     android:fontFamily="@font/leaguespartanbold"
                     android:text="Sucursal: "
                     android:textColor="@color/white"
                     android:textSize="20dp" />
+                <Button
+                    android:id="@+id/btnNewBranch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/leaguespartanbold"
+                    android:text="Agregar Sucursal: "
+                    android:layout_marginVertical="30dp"
+                    android:textColor="@color/white"
+                    android:layout_gravity="center"
+                    android:textSize="15sp" />
+
+
+
             </LinearLayout>
+
+
 
         </androidx.cardview.widget.CardView>
         <androidx.recyclerview.widget.RecyclerView
@@ -53,11 +68,13 @@
 
         </androidx.recyclerview.widget.RecyclerView>
     </LinearLayout>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fobAddProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/svg_add_ic"
+        android:backgroundTint="@color/bg_card"
         android:layout_gravity="end|bottom"
         android:layout_margin="50dp"
         tools:ignore="ContentDescription" />

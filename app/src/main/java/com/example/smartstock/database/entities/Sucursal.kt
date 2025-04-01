@@ -7,8 +7,7 @@ import androidx.room.PrimaryKey
     tableName = "sucursales"
 )
 data class Sucursal(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
     val user_name: String
 )
