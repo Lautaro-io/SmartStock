@@ -19,7 +19,6 @@ class ProductAdapter ( var listProducts: List<ProductForBranch> , val onDeleteCl
         holder: ProductViewHolder,
         position: Int
     ) {
-
         holder.render(listProducts[position] , onDeleteClick)
     }
 

@@ -10,7 +10,7 @@ class ProductViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     private val binding = ItemProductBinding.bind(view)
 
-    fun render(product: ProductForBranch , onDeleteClick : (ProductForBranch) -> Unit) {
+    fun render(product: ProductForBranch ,onDeleteClick : (ProductForBranch) -> Unit) {
 
         Picasso.get().load(product.urlImage).into(binding.ivProductPhoto)
         binding.tvNameProduct.text = "Nombre : ${product.name_product}"

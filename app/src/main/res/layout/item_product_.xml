@@ -47,6 +47,14 @@
                 android:textColor="@color/white"
                 android:fontFamily="@font/leaguespartanbold"/>
             <TextView
+                android:id="@+id/tvSucName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sucursal : "
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:fontFamily="@font/leaguespartanbold"/>
+            <TextView
                 android:id="@+id/tvExpireDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

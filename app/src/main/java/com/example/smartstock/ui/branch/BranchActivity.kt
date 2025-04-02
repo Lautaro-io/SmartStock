@@ -2,6 +2,7 @@ package com.example.smartstock.ui.branch
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -49,6 +50,7 @@ class BranchActivity : AppCompatActivity() {
         intent.putExtra("SUC_NAME", sucursal.name)
         intent.putExtra("SUC_ID",sucursal.id )
         intent.putExtra("USER_NAME", sucursal.user_name)
+        Log.i("CHELO", sucursal.toString())
         startActivity(intent)
 
     }

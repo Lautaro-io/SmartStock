@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import androidx.lifecycle.lifecycleScope
 import com.example.smartstock.databinding.ActivityMainBinding
 import com.example.smartstock.ui.branch.BranchActivity
@@ -28,8 +29,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initUI() {
+        val sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
         binding.nextBtn.setOnClickListener {
             val userName: String = binding.entryName.text.toString()
+            sharedPreferences.edit() { putString("USER_NAME", userName) }
             navigateToBranch(userName)
         }
     }

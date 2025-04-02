@@ -1,5 +1,6 @@
 package com.example.smartstock.viewmodel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.smartstock.database.entities.Sucursal
@@ -13,6 +14,9 @@ import javax.inject.Inject
 class SucursalViewModel @Inject constructor(
     private val repository: SucursalRepository
 ) : ViewModel() {
+
+
+    val allSucursales : LiveData<List<Sucursal>> = repository.getAllSucursales()
 
     fun insertBranch(sucursal: Sucursal) {
         viewModelScope.launch {

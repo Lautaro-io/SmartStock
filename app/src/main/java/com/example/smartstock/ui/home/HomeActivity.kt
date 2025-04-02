@@ -1,10 +1,13 @@
 package com.example.smartstock.ui.home
 
 import android.app.Dialog
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -36,11 +39,13 @@ class HomeActivity : AppCompatActivity() {
     private val productViewModel: BranchProductViewModel by viewModels()
     private val branchViewModel: SucursalViewModel by viewModels()
     private lateinit var rvProducts: RecyclerView
+    private lateinit var sharedPreferences: SharedPreferences
     private lateinit var productAdapter: ProductAdapter
 
     private var sucId: Int = 0
 
-    private var userName: String = ""
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +54,9 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
         retrofit = getRetrofitProduct()
         sucId = intent?.getIntExtra("SUC_ID", 0)!!
-        Log.i("CHELO", "$userName nombre de usuariooooooooooooo" )
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE)
+        val userName = sharedPreferences.getString("USER_NAME", "") ?: ""
+
         initUI()
 
     }
@@ -80,6 +87,15 @@ class HomeActivity : AppCompatActivity() {
         val dialog = Dialog(this)
         dialog.setContentView(R.layout.dialog_product_view)
         dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
+
+        val spinner: Spinner = dialog.findViewById(R.id.spinnerSucursales)
+
+        branchViewModel.allSucursales.observe(this) { sucursales ->
+            val sucursalesNames = sucursales.map{it.name}
+            val adapter = ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,sucursalesNames)
+            spinner.adapter = adapter
+        }
+
         val name: EditText = dialog.findViewById(R.id.nameProduct)
         val codeBar: EditText = dialog.findViewById(R.id.barCode)
         val countProduct: EditText = dialog.findViewById(R.id.countProduct)
@@ -112,6 +128,8 @@ class HomeActivity : AppCompatActivity() {
             val productCount = countProduct.text.toString().trim().toIntOrNull() ?: 0
             val expireDate =
                 "${expireDateDay.text.toString()}/${expireDateMonth.text.toString()}/${expireDateYear.text.toString()}"
+            val selectedPosition = spinner.selectedItemPosition // esto me devuelve el indice del item seleccionado
+            val selectedSucursal = branchViewModel.allSucursales.value?.get(selectedPosition) // aca uno el int que me devolvio el item seleccionado para "agarrarlo de la lista total de sucursales "
             if (productName.isNotEmpty() && productCode.isNotEmpty() && productCount > 0) {
                 if (sucId > 0) {
                     val product =
@@ -120,10 +138,10 @@ class HomeActivity : AppCompatActivity() {
                             productName,
                             productCount,
                             expireDate,
-                            sucId,
+                            selectedSucursal?.id ?: 0,
                             urlImage = url ?: ""
                         )
-                    lifecycleScope.launch {
+                     lifecycleScope.launch {
 
                         productViewModel.insertProduct(product)
                         dialog.dismiss()
@@ -177,21 +195,25 @@ class HomeActivity : AppCompatActivity() {
 
     private fun showDialogAddNewBranch() {
         val dialog = Dialog(this)
-        userName = intent.getStringExtra("USER_NAME").toString()
+
+
+
+
         dialog.setContentView(R.layout.dialog_new_branch)
         dialog.window?.setBackgroundDrawableResource(R.drawable.dialog_background)
+        val userName = sharedPreferences.getString("USER_NAME", "Invitado")
         val etUserName: EditText = dialog.findViewById(R.id.etUserName)
         etUserName.setText(userName)
         val etSucName: EditText = dialog.findViewById(R.id.etNewSucName)
         val btnAddSuc: Button = dialog.findViewById(R.id.addNewSucBtn)
 
         btnAddSuc.setOnClickListener {
-            val nameUser = userName
+            val nameUser:String? = userName
             val sucName = etSucName.text.toString().trim()
 
-            if (nameUser.isNotEmpty() && sucName.isNotEmpty()) {
+            if (nameUser?.isNotEmpty()!! && sucName.isNotEmpty()) {
                 lifecycleScope.launch {
-                    val newSuc = Sucursal(0, sucName, userName)
+                    val newSuc = Sucursal(0, sucName, userName!!)
                     branchViewModel.insertBranch(newSuc)
                     Log.i("CHELO", "${newSuc.toString()} agregado con exito! ")
                     dialog.dismiss()
